@@ -1,4 +1,6 @@
-import os, requests, json
+import os
+import requests
+import json
 from flask import Flask, request, jsonify
 from groq import Groq  # usa o client oficial
 
@@ -21,4 +23,5 @@ def interpretar():
     return jsonify({"sql": None, "mensagem": "SQL inválido ou não reconhecido."})
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))  # Porta do Render ou 5000 localmente
+    app.run(host="0.0.0.0", port=port)    
